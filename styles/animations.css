@@ -1,0 +1,63 @@
+@import url('./common.css');
+.contenedor-spinner {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border-left-color: var(--secondary);
+    animation: spin 0.5s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loadingTask {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.tarea.loading .descripcion .nombre,
+.tarea.loading .descripcion .timestamp,
+.tarea.loading.terminadas .descripcion .nombre,
+.tarea.loading.terminadas .descripcion .timestamp {
+    display: block;
+    height: 1em;
+    width: 30em;
+    background-color: rgb(226, 226, 226);
+    transform-origin: 0 0;
+    animation-name: loadingTask;
+    animation-iteration-count: infinite;
+    animation-duration: 500ms;
+}
+
+.tarea.loading .descripcion .timestamp,
+.tarea.loading.terminadas .descripcion .timestamp {
+    width: 10em;
+}
+
+.tarea.loading.terminadas .descripcion .nombre,
+.tarea.loading.terminadas .descripcion .timestamp {
+    background-color: rgba(255, 255, 255, 0.5);
+}

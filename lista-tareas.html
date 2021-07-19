@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/animations.css">
     <link rel="stylesheet" href="./styles/lista-tareas.css">
     <script src="./scripts/lista-tareas.script.js"></script>
     <title>ToDo</title>
@@ -21,22 +22,46 @@
             <div class="user-image"></div>
         </div>
     </header>
+    <main>
+        <div class="contenedor-spinner">
+            <div class="spinner"></div>
+        </div>
 
-
-    <form class="nueva-tarea" name="formTareas">
-        <div class="not-done "></div>
-        <input type="text" placeholder="Nueva tarea" name="tarea">
-        <button>
+        <div id="contenido" class="hidden">
+            <form class="nueva-tarea" name="formTareas">
+                <div class="not-done "></div>
+                <input type="text" placeholder="Nueva tarea" name="tarea">
+                <button>
       <img src="./assets/plus.png" alt="Agregar Tarea">
     </button>
-    </form>
+            </form>
 
 
-    <ul class="tareas-pendientes"></ul>
+            <ul class="tareas-pendientes">
+                <li class="tarea loading">
+                    <div class="not-done"></div>
+                    <div class="descripcion">
+                        <p class="nombre"></p>
+                        <p class="timestamp"></p>
+                    </div>
+                    <div class="not-done" style="background-color:red; margin-left:1rem;"></div>
+                </li>
+            </ul>
 
-    <h2 class="titulo-terminadas">Tareas terminadas</h2>
-    <ul class="tareas-terminadas"></ul>
 
+            <h2 class="titulo-terminadas">Tareas terminadas</h2>
+            <ul class="tareas-terminadas">
+                <li class="tarea loading terminadas">
+                    <div class="not-done"></div>
+                    <div class="descripcion">
+                        <p class="nombre"></p>
+                        <p class="timestamp"></p>
+                    </div>
+                    <div class="not-done" style="background-color:red; margin-left:1rem;"></div>
+                </li>
+            </ul>
+        </div>
+    </main>
 </body>
 
 </html>

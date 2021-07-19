@@ -8,11 +8,9 @@ window.addEventListener("load", function() {
         console.log(description);
         addTask(description);
     })
-})
+});
 
 function getTasks() {
-    document.querySelector("ul.tareas-terminadas").innerHTML = "";
-    document.querySelector("ul.tareas-pendientes").innerHTML = "";
     const url = "https://ctd-todo-api.herokuapp.com/v1";
     const token = localStorage.getItem("token")
     fetch(`${url}/tasks`, {
@@ -25,6 +23,12 @@ function getTasks() {
             return data.json()
         })
         .then((dataJs) => {
+            document.querySelector("ul.tareas-terminadas").innerHTML = "";
+            document.querySelector("ul.tareas-pendientes").innerHTML = "";
+            const spinner = document.querySelector(".contenedor-spinner");
+            const contenido = document.querySelector("#contenido");
+            spinner.classList.add("hidden");
+            contenido.classList.remove("hidden");
             console.log("Carga Exitosa de API");
             dataJs.forEach(function(tarea) {
                 let contenedor = tarea.completed ? document.querySelector("ul.tareas-terminadas") : document.querySelector("ul.tareas-pendientes");
@@ -51,7 +55,7 @@ function renderizeTasks(tarea, container, estado) {
     container.innerHTML += template;
 }
 
-function modifyTask(id, ) {
+function modifyTask(id, completed) {
     const url = "https://ctd-todo-api.herokuapp.com/v1";
     const token = localStorage.getItem("token")
     fetch(`${url}/tasks/${id}`, {
@@ -79,18 +83,17 @@ function modifyTask(id, ) {
 function deleteTask(id) {
     const url = "https://ctd-todo-api.herokuapp.com/v1";
     const token = localStorage.getItem("token")
+    if (!confirm("¿Está seguro que desea eliminar la tarea?")) {
+        return;
+    }
     fetch(`${url}/tasks/${id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
                 "authorization": token
             }
-
         })
         .then((data) => {
-            return data.json()
-        })
-        .then((dataJs) => {
             console.log("Carga Exitosa de API");
             getTasks();
         })
