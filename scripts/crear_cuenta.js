@@ -1,5 +1,6 @@
 window.onload = () => {
     const formLogin = document.forms.formLogin;
+    const botonLogin = document.querySelector(".btnLogin");
 
     const nombre = formLogin.nombre;
     const contrasenia = formLogin.contrasenia;
@@ -37,7 +38,9 @@ window.onload = () => {
         }
     })
 
-
+    botonLogin.addEventListener("click", () => {
+        location.href = "../login.html";
+    });
 }
 
 function validarNombre(valor) {

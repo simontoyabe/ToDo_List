@@ -1,16 +1,16 @@
 window.onload = () => {
-
     const form = document.forms.formLogin;
+    const botonCuenta = document.querySelector(".btnCuenta ");
 
-    form.addEventListener('submit', event => {
+    botonCuenta.addEventListener("click", () => {
+        location.href = "../index.html";
+    });
+
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const email = form.email.value;
         const password = form.contrasenia.value;
-
-        console.log(form)
-        console.log(email)
-        console.log(password)
 
         const url = 'https://ctd-todo-api.herokuapp.com/v1';
         fetch(`${url}/users/login`, {
@@ -29,6 +29,7 @@ window.onload = () => {
             location.href = '../lista-tareas.html'
         })
 
-    })
+    });
+
 
 }
