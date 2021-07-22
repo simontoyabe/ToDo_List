@@ -120,7 +120,6 @@ a {
     position: relative;
     height: 1.5em;
     width: 1.5em;
-    background-color: white;
     box-shadow: 2px 2px 5px lightgrey;
     border: 2px solid var(--secondary);
     z-index: 2;
@@ -215,4 +214,23 @@ a {
 .tareas-terminadas .tarea .descripcion .nombre {
     color: grey;
     text-decoration: line-through;
+}
+
+
+/* Borrar tareas ----------------------------------------------------------- */
+
+.boton-borrar {
+    background-color: red;
+    margin-left: 1rem;
+    text-align: center;
+}
+
+.tareas-pendientes .tarea .borrar,
+.tareas-terminadas .tarea .borrar {
+    color: white;
+    opacity: 0.8;
+}
+
+.tareas-terminadas .tarea .borrar {
+    color: black;
 }

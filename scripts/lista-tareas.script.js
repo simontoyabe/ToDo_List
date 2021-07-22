@@ -47,7 +47,7 @@ function renderizeTasks(tarea, container, estado) {
               <p class="nombre">${tarea.description}</p>
               <p class="timestamp">Creado el: ${tarea.createdAt}</p>
           </div>
-        <div class="not-done" style="background-color:red; margin-left:1rem;" onclick=deleteTask(${tarea.id})></div>
+        <div class="boton-borrar not-done" onclick=deleteTask(${tarea.id})><i class="fas fa-eraser borrar"></i></div>
       </li>
       `;
     container.innerHTML += template;
