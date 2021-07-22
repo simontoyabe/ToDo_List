@@ -70,10 +70,6 @@ input.button {
     transition: background-color 200ms linear;
 }
 
-button {
-    color: #000;
-}
-
 button:hover,
 input.button:hover {
     background-color: var(--secondary);
