@@ -4,9 +4,7 @@ window.addEventListener("load", function() {
     const form = document.forms.formTareas;
     form.addEventListener("submit", function(event) {
         event.preventDefault();
-        let description = form.tarea.value
-        console.log(description);
-        addTask(description);
+        addTask(form.tarea.value);
     })
 });
 
