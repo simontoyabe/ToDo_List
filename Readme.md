@@ -4,7 +4,7 @@
 
 * **HTML** - Website structure
 * **CSS** - Website styles
-* **Javascript** - Dinamismo
+* **Javascript** - Functionality
 * **Used API** - [TODOs API](https://ctd-todo-api.herokuapp.com/#/)
 
 You can create your own user to play with the website or you can use the following credentials to explore it:
