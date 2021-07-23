@@ -12,7 +12,9 @@ You can create your own user to play with the website or you can use the followi
 * **Email** - juan@juan.com
 * **Password** - 12345678
 
+Look it at this direction: [Website](" https://simontoyabe.github.io/ToDo_List/"). 
 
-Look it at this direction: [Website](" https://simontoyabe.github.io/ToDo_List/")
+![](https://simontoyabe.github.io/ToDo_List/assets/Capture.PNG)
+
 
 This is an open source project. Made by Simón Montoya Bedoya, Colombia
