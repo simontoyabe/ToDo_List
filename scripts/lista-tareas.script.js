@@ -16,7 +16,7 @@ window.addEventListener("load", function() {
         if (confirm("¿Está seguro que desea salir?")) {
             localStorage.removeItem("token");
             localStorage.removeItem("user");
-            window.location.href = "./login.html";
+            window.location.href = "https://simontoyabe.github.io/ToDo_List/login.html";
         }
     })
 });
@@ -151,7 +151,7 @@ function addTask(description) {
 
 function valToken() {
     if (localStorage.getItem("token") == null) {
-        location.href = "./login.html";
+        location.href = "https://simontoyabe.github.io/ToDo_List/login.html";
     }
 }
 

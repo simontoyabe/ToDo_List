@@ -31,7 +31,7 @@ window.onload = () => {
                 return datos.json();
             }).then(datos => {
                 localStorage.setItem('token', datos.jwt);
-                location.href = './lista-tareas.html';
+                location.href = 'https://simontoyabe.github.io/ToDo_List/lista-tareas.html';
             }).catch(err => {
                 console.log(err)
             });
@@ -39,7 +39,7 @@ window.onload = () => {
     })
 
     botonLogin.addEventListener("click", () => {
-        location.href = "./login.html";
+        location.href = "https://simontoyabe.github.io/ToDo_List/login.html";
     });
 }
 
