@@ -3,7 +3,7 @@ window.onload = () => {
     const botonCuenta = document.querySelector(".btnCuenta ");
 
     botonCuenta.addEventListener("click", () => {
-        location.href = "../index.html";
+        location.href = "./index.html";
     });
 
     form.addEventListener('submit', (event) => {

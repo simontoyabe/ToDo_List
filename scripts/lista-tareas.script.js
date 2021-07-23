@@ -14,7 +14,9 @@ window.addEventListener("load", function() {
     })
     salir.addEventListener("click", () => {
         if (confirm("¿Está seguro que desea salir?")) {
-            window.location.href = "../login.html";
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            window.location.href = "./login.html";
         }
     })
 });
@@ -149,7 +151,7 @@ function addTask(description) {
 
 function valToken() {
     if (localStorage.getItem("token") == null) {
-        location.href = "../login.html";
+        location.href = "./login.html";
     }
 }
 

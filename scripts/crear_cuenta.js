@@ -39,7 +39,7 @@ window.onload = () => {
     })
 
     botonLogin.addEventListener("click", () => {
-        location.href = "../login.html";
+        location.href = "./login.html";
     });
 }
 
