@@ -7,11 +7,19 @@ window.onload = () => {
     const repetirContrasenia = formLogin.repetirContrasenia;
     const email = formLogin.email;
 
+    botonLogin.addEventListener("click", () => {
+        location.href = "./login.html";
+    });
+
     formLogin.addEventListener('submit', (event) => {
         event.preventDefault();
         const nombreValido = validarNombre(nombre.value);
         const contrValido = validarContrasenia(contrasenia.value, repetirContrasenia.value);
         const emailValido = validarEmail(email.value)
+        const spinner = document.querySelector(".contenedor-spinner");
+        const contenido = document.querySelector("#contenido");
+        contenido.classList.add("hidden");
+        spinner.classList.remove("hidden");
 
         if (nombreValido && contrValido && emailValido) {
             const datosUsuario = new DatosUsuario();
@@ -19,6 +27,7 @@ window.onload = () => {
             datosUsuario.setLastname('DH');
             datosUsuario.setPassword(contrasenia.value);
             datosUsuario.setEmail(email.value);
+
 
             const url = 'https://ctd-todo-api.herokuapp.com/v1';
             fetch(`${url}/users`, {
@@ -31,16 +40,13 @@ window.onload = () => {
                 return datos.json();
             }).then(datos => {
                 localStorage.setItem('token', datos.jwt);
-                location.href = 'https://simontoyabe.github.io/ToDo_List/lista-tareas.html';
+                location.href = './lista-tareas.html';
             }).catch(err => {
                 console.log(err)
             });
         }
     })
 
-    botonLogin.addEventListener("click", () => {
-        location.href = "https://simontoyabe.github.io/ToDo_List/login.html";
-    });
 }
 
 function validarNombre(valor) {

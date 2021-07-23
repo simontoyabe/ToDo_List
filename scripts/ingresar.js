@@ -3,7 +3,7 @@ window.onload = () => {
     const botonCuenta = document.querySelector(".btnCuenta ");
 
     botonCuenta.addEventListener("click", () => {
-        location.href = "https://simontoyabe.github.io/ToDo_List/index.html";
+        location.href = "./index.html";
     });
 
     form.addEventListener('submit', (event) => {
@@ -30,7 +30,7 @@ window.onload = () => {
             return datos.json();
         }).then(datos => {
             localStorage.setItem('token', datos.jwt);
-            location.href = "https://simontoyabe.github.io/ToDo_List/lista-tareas.html";
+            location.href = "./lista-tareas.html";
         })
 
     });
