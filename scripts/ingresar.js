@@ -30,7 +30,7 @@ window.onload = () => {
             return datos.json();
         }).then(datos => {
             localStorage.setItem('token', datos.jwt);
-            location.href = '../lista-tareas.html'
+            location.href = "./lista-tareas.html";
         })
 
     });
