@@ -12,7 +12,7 @@ You can create your own user to play with the website or you can use the followi
 * **Email** - juan@juan.com
 * **Password** - 12345678
 
-Look it at this direction: [Website]("https://simontoyabe.github.io/ToDo_List/"). 
+Look it at this direction: [Website]("https://simontoyabe.github.io/ToDo_List/") 
 
 Take a look:
 ![](https://simontoyabe.github.io/ToDo_List/assets/Capture.PNG)
