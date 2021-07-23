@@ -11,6 +11,10 @@ window.onload = () => {
 
         const email = form.email.value;
         const password = form.contrasenia.value;
+        const spinner = document.querySelector(".contenedor-spinner");
+        const contenido = document.querySelector("#contenido");
+        contenido.classList.add("hidden");
+        spinner.classList.remove("hidden");
 
         const url = 'https://ctd-todo-api.herokuapp.com/v1';
         fetch(`${url}/users/login`, {

@@ -1,6 +1,6 @@
 @import url('./common.css');
 .contenedor-spinner {
-    height: 50vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,15 +9,11 @@
 
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     border-left-color: var(--secondary);
     animation: spin 0.5s linear infinite;
-}
-
-.hidden {
-    display: none;
 }
 
 @keyframes spin {

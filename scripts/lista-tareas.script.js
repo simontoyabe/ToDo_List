@@ -1,16 +1,26 @@
+const url = "https://ctd-todo-api.herokuapp.com/v1"
+const token = localStorage.getItem("token");
+
 valToken();
+
 window.addEventListener("load", function() {
+    getUserInfo();
     getTasks();
     const form = document.forms.formTareas;
-    form.addEventListener("submit", function(event) {
+    const salir = document.querySelector(".user-exit");
+    form.addEventListener("submit", (event) => {
         event.preventDefault();
         addTask(form.tarea.value);
+    })
+    salir.addEventListener("click", () => {
+        if (confirm("¿Está seguro que desea salir?")) {
+            window.location.href = "../login.html";
+        }
     })
 });
 
 function getTasks() {
     const url = "https://ctd-todo-api.herokuapp.com/v1";
-    const token = localStorage.getItem("token")
     fetch(`${url}/tasks`, {
             headers: {
                 "Content-Type": "application/json",
@@ -23,10 +33,6 @@ function getTasks() {
         .then((dataJs) => {
             document.querySelector("ul.tareas-terminadas").innerHTML = "";
             document.querySelector("ul.tareas-pendientes").innerHTML = "";
-            const spinner = document.querySelector(".contenedor-spinner");
-            const contenido = document.querySelector("#contenido");
-            spinner.classList.add("hidden");
-            contenido.classList.remove("hidden");
             console.log("Carga Exitosa de API");
             dataJs.forEach(function(tarea) {
                 let contenedor = tarea.completed ? document.querySelector("ul.tareas-terminadas") : document.querySelector("ul.tareas-pendientes");
@@ -47,15 +53,13 @@ function renderizeTasks(tarea, container, estado) {
               <p class="nombre">${tarea.description}</p>
               <p class="timestamp">Creado el: ${tarea.createdAt}</p>
           </div>
-        <div class="boton-borrar not-done" onclick=deleteTask(${tarea.id})><i class="fas fa-eraser borrar"></i></div>
+        <div class="boton-borrar not-done" onclick=deleteTask(${tarea.id})><i class="fas fa-trash-alt borrar"></i></div>
       </li>
       `;
     container.innerHTML += template;
 }
 
 function modifyTask(id, completed) {
-    const url = "https://ctd-todo-api.herokuapp.com/v1";
-    const token = localStorage.getItem("token")
     fetch(`${url}/tasks/${id}`, {
             method: 'PUT',
             headers: {
@@ -78,9 +82,27 @@ function modifyTask(id, completed) {
         })
 }
 
+function getUserInfo() {
+    fetch(`${url}/users/getMe`, {
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": token
+            }
+        })
+        .then((data) => {
+            return data.json()
+        })
+        .then((dataJs) => {
+            const username = document.querySelector(".name-user");
+            console.log("Carga Exitosa de API");
+            localStorage.setItem("user", dataJs);
+            username.innerText += dataJs.firstName;
+        }).catch((err) => {
+            console.log(err);
+        });
+}
+
 function deleteTask(id) {
-    const url = "https://ctd-todo-api.herokuapp.com/v1";
-    const token = localStorage.getItem("token")
     if (!confirm("¿Está seguro que desea eliminar la tarea?")) {
         return;
     }
@@ -101,8 +123,6 @@ function deleteTask(id) {
 }
 
 function addTask(description) {
-    const url = "https://ctd-todo-api.herokuapp.com/v1";
-    const token = localStorage.getItem("token")
     const completed = false;
     fetch(`${url}/tasks`, {
             method: 'POST',

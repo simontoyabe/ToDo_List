@@ -16,9 +16,11 @@ a {
     color: white
 }
 
-.user-info {
+.user-info,
+.user-exit {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-left: auto;
     color: rgb(223, 223, 223);
 }
@@ -27,13 +29,23 @@ a {
     text-transform: capitalize;
 }
 
-.user-info .user-image {
+.user-info .user-exit {
     height: 2em;
     width: 2em;
     border-radius: 50%;
-    background-color: white;
+    background-color: red;
     opacity: .3;
     margin-left: .7em;
+    cursor: pointer;
+    transition: opacity 200ms linear;
+}
+
+.user-info .user-exit:hover {
+    opacity: 1;
+}
+
+.user-info .user-exit .exit {
+    color: black
 }
 
 
@@ -91,12 +103,20 @@ a {
 }
 
 .not-done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 2em;
     height: 2em;
     background-color: var(--app-grey);
     margin-right: 1em;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.registro-tareas {
+    background-color: var(--primary);
+    cursor: default;
 }
 
 
@@ -222,7 +242,6 @@ a {
 .boton-borrar {
     background-color: red;
     margin-left: 1rem;
-    text-align: center;
 }
 
 .tareas-pendientes .tarea .borrar,

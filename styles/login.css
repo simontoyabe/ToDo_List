@@ -20,6 +20,10 @@ form {
     box-sizing: border-box;
 }
 
+.form-login {
+    height: 100vh;
+}
+
 form:after {
     position: absolute;
     content: '';
@@ -31,11 +35,18 @@ form:after {
 }
 
 .image {
-    height: 10em;
-    width: 9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
     background-color: var(--app-grey);
-    margin-bottom: 2em;
+}
+
+.image .fantasma {
+    color: rgba(131, 126, 226, 0.6);
+    font-size: 5em;
 }
 
 input {
