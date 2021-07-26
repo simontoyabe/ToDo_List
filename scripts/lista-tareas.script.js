@@ -1,8 +1,5 @@
-const url = "https://ctd-todo-api.herokuapp.com/v1"
-const token = localStorage.getItem("token");
-
-valToken();
-
+// RequestManager = require('./services/request-manager.servicio.js');
+// import { RequestManager } from './services/request-manager.servicio';
 window.addEventListener("load", function() {
     getUserInfo();
     getTasks();
@@ -11,7 +8,7 @@ window.addEventListener("load", function() {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         addTask(form.tarea.value);
-    })
+    });
     salir.addEventListener("click", () => {
         if (confirm("¿Está seguro que desea salir?")) {
             localStorage.removeItem("token");
@@ -21,30 +18,27 @@ window.addEventListener("load", function() {
     })
 });
 
+valToken();
+setInterval(() => {
+    valToken();
+}, 100000);
+
 function getTasks() {
-    const url = "https://ctd-todo-api.herokuapp.com/v1";
-    fetch(`${url}/tasks`, {
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": token
-            }
-        })
-        .then((data) => {
-            return data.json()
-        })
-        .then((dataJs) => {
+    // document.querySelector('ul.tareas-pendientes').innerHTML = '';
+    // document.querySelector('ul.tareas-terminadas').innerHTML = '';
+    RequestManager.get('/tasks')
+        .then(dataJs => {
             document.querySelector("ul.tareas-terminadas").innerHTML = "";
             document.querySelector("ul.tareas-pendientes").innerHTML = "";
             console.log("Carga Exitosa de API");
-            dataJs.forEach(function(tarea) {
+            dataJs.forEach((tarea) => {
                 let contenedor = tarea.completed ? document.querySelector("ul.tareas-terminadas") : document.querySelector("ul.tareas-pendientes");
                 renderizeTasks(tarea, contenedor, !tarea.completed);
             });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-}
+        }).catch(err => {
+            console.log(err)
+        });
+};
 
 function renderizeTasks(tarea, container, estado) {
     const template = `
@@ -62,38 +56,20 @@ function renderizeTasks(tarea, container, estado) {
 }
 
 function modifyTask(id, completed) {
-    fetch(`${url}/tasks/${id}`, {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": token
-            },
-            body: JSON.stringify({
-                completed
-            })
-        })
-        .then((data) => {
-            return data.json()
-        })
-        .then((dataJs) => {
+    const body = {
+        completed
+    };
+    RequestManager.put(`/tasks/${id}`, body)
+        .then(tarea => {
             console.log("Carga Exitosa de API");
             getTasks();
+        }).catch(err => {
+            console.log(err)
         })
-        .catch((err) => {
-            console.log(err);
-        })
-}
+};
 
 function getUserInfo() {
-    fetch(`${url}/users/getMe`, {
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": token
-            }
-        })
-        .then((data) => {
-            return data.json()
-        })
+    RequestManager.get(`/users/getMe`)
         .then((dataJs) => {
             const username = document.querySelector(".name-user");
             console.log("Carga Exitosa de API");
@@ -102,58 +78,41 @@ function getUserInfo() {
         }).catch((err) => {
             console.log(err);
         });
-}
+};
 
 function deleteTask(id) {
-    if (!confirm("¿Está seguro que desea eliminar la tarea?")) {
+    if (!confirm('Esta seguro que desea eliminar la tarea?')) {
         return;
     }
-    fetch(`${url}/tasks/${id}`, {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": token
-            }
-        })
-        .then((data) => {
-            console.log("Carga Exitosa de API");
+    RequestManager.delete(`/tasks/${id}`)
+        .then(tarea => {
+            console.log("entró");
             getTasks();
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-}
+        }).catch(err => {
+            console.log(err)
+        });
+};
 
 function addTask(description) {
     const completed = false;
-    fetch(`${url}/tasks`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": token
-            },
-            body: JSON.stringify({
-                description,
-                completed
-            })
-        })
-        .then((data) => {
-            return data.json()
-        })
-        .then((dataJs) => {
+    const body = {
+        description,
+        completed
+    };
+    RequestManager.post(`/tasks`, body)
+        .then(tarea => {
             console.log("Carga Exitosa de API");
             getTasks();
-        })
-        .catch((err) => {
+        }).catch(err => {
             console.log(err);
-        })
-}
+        });
+};
 
 function valToken() {
-    if (localStorage.getItem("token") == null) {
+    if (RequestManager.getToken() == null) {
         location.href = "./login.html";
-    }
-}
+    };
+};
 
 // 1 - representar los datos (tareas) en JavaScript
 // 2 - Hacer un template para representar las tareas

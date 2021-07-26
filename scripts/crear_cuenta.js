@@ -1,3 +1,5 @@
+const DatosUsuario = require("../models/DatosUsuario");
+
 window.onload = () => {
     const formLogin = document.forms.formLogin;
     const botonLogin = document.querySelector(".btnLogin");
