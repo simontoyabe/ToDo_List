@@ -33,7 +33,7 @@ function getTasks() {
             console.log("Carga Exitosa de API");
             dataJs.forEach((tarea) => {
                 let contenedor = tarea.completed ? document.querySelector("ul.tareas-terminadas") : document.querySelector("ul.tareas-pendientes");
-                renderizeTasks(tarea, contenedor, !tarea.completed);
+                renderizeTasks(tarea, contenedor, tarea.completed);
             });
         }).catch(err => {
             console.log(err)
@@ -57,7 +57,7 @@ function renderizeTasks(tarea, container, estado) {
 
 function modifyTask(id, completed) {
     const body = {
-        completed
+        completed: !completed
     };
     RequestManager.put(`/tasks/${id}`, body)
         .then(tarea => {
