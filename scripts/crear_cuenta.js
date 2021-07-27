@@ -10,7 +10,7 @@ window.onload = () => {
     const email = formLogin.email;
 
     botonLogin.addEventListener("click", () => {
-        location.href = "./login.html";
+        location.href = "./index.html";
     });
 
     formLogin.addEventListener('submit', (event) => {
