@@ -1,4 +1,4 @@
-const DatosUsuario = require("../models/DatosUsuario");
+// const DatosUsuario = require("../models/DatosUsuario");
 
 window.onload = () => {
     const formLogin = document.forms.formLogin;

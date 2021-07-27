@@ -22,4 +22,4 @@ class DatosUsuario {
         this.email = email;
     }
 }
-module.exports = DatosUsuario;
+// module.exports = DatosUsuario;
