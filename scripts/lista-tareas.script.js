@@ -47,7 +47,7 @@ function renderizeTasks(tarea, container, estado) {
         
           <div class="descripcion">
               <p class="nombre">${tarea.description}</p>
-              <p class="timestamp">Creado el: ${tarea.createdAt}</p>
+              <p class="timestamp">Creado el: ${dayjs(tarea.createdAt).format("DD-MMM-YYYY HH:mm")}</p>
           </div>
         <div class="boton-borrar not-done" onclick=deleteTask(${tarea.id})><i class="fas fa-trash-alt borrar"></i></div>
       </li>
